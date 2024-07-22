@@ -1,0 +1,17 @@
+## This is where the final image is created
+FROM ghcr.io/nimiq/core-rs-albatross:v0.23.0
+
+# Set default confige can be overwritten by mounting
+COPY ./files_full/client.toml /home/nimiq/.nimiq
+
+# Expose sync port
+EXPOSE 8443
+
+# Expose RPC port
+EXPOSE 8648
+
+# Expose metrics port
+EXPOSE 9200
+
+# Run CMD so we can use other bin
+CMD [ "nimiq-client" ]

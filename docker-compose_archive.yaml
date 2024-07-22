@@ -1,0 +1,27 @@
+services:
+  node:
+    container_name: node
+    image: 'maestroi/nimiq-albatross:prebuild-archive'
+    user: '1001:1001'
+    restart: unless-stopped
+    ports:
+      - '8443:8443'
+      - "8648:8648"
+      - '9200:9200'
+    environment:
+      RPC_ENABLED: 'true'
+      NIMIQ_INSTANT_INBOUND: 'true'
+    volumes:
+      - 'data:/home/nimiq/.nimiq'
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nimiq.entryPoints=8443
+       - traefik.http.routers.nimiq.entryPoints=8648
+
+volumes:
+  data: null

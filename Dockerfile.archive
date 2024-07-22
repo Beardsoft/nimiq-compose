@@ -2,7 +2,7 @@
 FROM ghcr.io/nimiq/core-rs-albatross:v0.23.0
 
 # Set default confige can be overwritten by mounting
-COPY ./files/client.toml /home/nimiq/.nimiq
+COPY ./files_archive/client.toml /home/nimiq/.nimiq
 
 # Expose sync port
 EXPOSE 8443
